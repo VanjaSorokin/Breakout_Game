@@ -10,13 +10,18 @@ public class GM : MonoBehaviour {
 	public GameObject BricksPrefab;
 	public GameObject Paddle;
 	public GameObject DeathParticles;
-	
+	public GameObject Score;
+
+	public int CurrentScore;
 	public int Lives = 3;
 	public int Bricks = 20;
 	public float ResetDelay = 1f;
 	public Text LivesText;
+	public Text ScoreText;
 	public static GM Instance = null;
 	public bool YouWonTrue = false;
+
+	public int CurrentMultiplier;
 	
 	//Created "YouWonTrue" becuase there was a bug where 
 	//I could both win and lose the game at the same time. 
@@ -34,8 +39,15 @@ public class GM : MonoBehaviour {
 		Setup ();
 		
 	}
+	void Update()
+	{
+		ScoreText.text = "Score:" + CurrentScore;
+	}
+
 	public void Setup()
 	{
+		CurrentMultiplier = 1;
+		CurrentScore = 0;
 		ClonePaddle = Instantiate (Paddle, transform.position, Quaternion.identity) as GameObject;
 		Instantiate (BricksPrefab, transform.position, Quaternion.identity);
 	}
@@ -89,5 +101,21 @@ public class GM : MonoBehaviour {
 		Bricks --;
 		CheckGameOver();
 	}
+
+	//Adds Points Based on Multiplier
+	public void AddPoints(int points)
+	{
+		CurrentMultiplier += 1;
+		points = (points*CurrentMultiplier);
+		CurrentScore = (CurrentScore + points);
+	}
+
+	//Resets Multiplier
+	public void ResetMultiplier()
+	{
+		CurrentMultiplier = 1;
+	}
+
+
 }
 

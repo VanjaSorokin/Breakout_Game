@@ -23,5 +23,6 @@ public class Paddle : MonoBehaviour {
 	void OnCollisionEnter (Collision other)
 	{
 		audio.PlayOneShot(impact, 0.7F);
+		GM.Instance.ResetMultiplier();
 	}
 }

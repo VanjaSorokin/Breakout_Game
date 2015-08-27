@@ -29,7 +29,9 @@ public class Bricks : MonoBehaviour {
 	{
 		Instantiate (BrickParticle, transform.position, Quaternion.identity);
 		audio.PlayOneShot(impact, 0.7F);
-			print ("hit");
-			BrickHP -= 1;
+		print ("hit");
+		Camera.main.SendMessage("Shake");
+		GM.Instance.AddPoints(BrickHP*10);
+		BrickHP -= 1;
 	}
 }
