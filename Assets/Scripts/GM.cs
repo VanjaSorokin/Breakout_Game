@@ -10,19 +10,19 @@ public class GM : MonoBehaviour {
 	public GameObject BricksPrefab;
 	public GameObject Paddle;
 	public GameObject DeathParticles;
-
+	
 	public int Lives = 3;
 	public int Bricks = 20;
 	public float ResetDelay = 1f;
 	public Text LivesText;
 	public static GM Instance = null;
 	public bool YouWonTrue = false;
-
+	
 	//Created "YouWonTrue" becuase there was a bug where 
 	//I could both win and lose the game at the same time. 
-
+	
 	private GameObject ClonePaddle;
-
+	
 	// Use this for initialization.
 	void Start () 
 	{
@@ -30,16 +30,16 @@ public class GM : MonoBehaviour {
 			Instance = this;
 		else if (Instance != this)
 			Destroy (gameObject);
-
+		
 		Setup ();
-	
+		
 	}
 	public void Setup()
 	{
 		ClonePaddle = Instantiate (Paddle, transform.position, Quaternion.identity) as GameObject;
 		Instantiate (BricksPrefab, transform.position, Quaternion.identity);
 	}
-
+	
 	//This tells the player whether they have won or lost.
 	void CheckGameOver()
 	{
@@ -50,7 +50,7 @@ public class GM : MonoBehaviour {
 			Time.timeScale = .25f;
 			Invoke ("Reset", ResetDelay);
 		}
-
+		
 		if (Lives < 1 && YouWonTrue == false) 
 		{
 			GameOver.SetActive (true);
@@ -58,14 +58,14 @@ public class GM : MonoBehaviour {
 			Invoke ("Reset", ResetDelay);
 		}
 	}
-
+	
 	//This resets the application.
 	void Reset()
 	{
 		Time.timeScale = 1f;
 		Application.LoadLevel (Application.loadedLevel);
 	}
-
+	
 	//This destroys the paddle and makes you lose a life when the ball enters the "DeadZone".
 	public void LoseLife()
 	{
@@ -76,13 +76,13 @@ public class GM : MonoBehaviour {
 		Invoke ("SetUpPaddle", ResetDelay);
 		CheckGameOver ();
 	}
-
+	
 	//Spawns Paddle and ball.
 	void SetUpPaddle()
 	{
 		ClonePaddle = Instantiate (Paddle, transform.position, Quaternion.identity) as GameObject;
 	}
-
+	
 	//This says when a brick is destroyed, decrease the total number of bricks by 1.
 	public void DestroyBrick()
 	{
@@ -90,3 +90,4 @@ public class GM : MonoBehaviour {
 		CheckGameOver();
 	}
 }
+

@@ -5,11 +5,13 @@ public class Ball : MonoBehaviour {
 
 	public float BallInitalVelocity = 600f;
 	private Rigidbody rb;
+	public AudioClip impact;
+	AudioSource audio;
 	private bool BallInPlay;
 
 	//Gets the balls rigid body
 	void Awake () {
-
+		audio = GetComponent<AudioSource>();
 		rb = GetComponent < Rigidbody > ();
 
 	}
@@ -25,5 +27,10 @@ public class Ball : MonoBehaviour {
 			rb.AddForce (new Vector3 (BallInitalVelocity, BallInitalVelocity, 0));
 
 		}
+	}
+
+	void OnCollisionEnter(Collision other)
+	{
+		audio.PlayOneShot(impact, 0.7F);
 	}
 }

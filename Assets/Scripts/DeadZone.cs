@@ -8,6 +8,7 @@ public class DeadZone : MonoBehaviour {
 	void OnTriggerEnter (Collider col)
 	{
 		GM.Instance.LoseLife ();
+		Destroy(col.gameObject);
 		Debug.Log ("Is working");
 	}
 }
