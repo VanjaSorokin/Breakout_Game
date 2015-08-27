@@ -8,6 +8,7 @@ public class Ball : MonoBehaviour {
 	public AudioClip impact;
 	AudioSource audio;
 	private bool BallInPlay;
+	public GameObject sprite;
 
 	//Gets the balls rigid body
 	void Awake () {
@@ -32,5 +33,12 @@ public class Ball : MonoBehaviour {
 	void OnCollisionEnter(Collision other)
 	{
 		audio.PlayOneShot(impact, 0.7F);
+		sprite.gameObject.transform.localScale = new Vector3(1.5f,1.5f,1.5f);
+		StartCoroutine(Wait());
+	}
+
+	IEnumerator Wait(){
+		yield return new WaitForSeconds(0.05f);
+		sprite.gameObject.transform.localScale = new Vector3(1,1,1);
 	}
 }

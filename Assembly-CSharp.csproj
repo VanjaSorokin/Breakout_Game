@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\GM.cs" />
      <Compile Include="Assets\Scripts\HighScores.cs" />
      <Compile Include="Assets\Scripts\Paddle.cs" />
+     <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\PopUpMultiplier.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

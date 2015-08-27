@@ -27,6 +27,9 @@ public class GM : MonoBehaviour {
 	//I could both win and lose the game at the same time. 
 	
 	private GameObject ClonePaddle;
+
+	public Canvas pauseCanvas;
+	bool m_paused;
 	
 	// Use this for initialization.
 	void Start () 
@@ -37,10 +40,12 @@ public class GM : MonoBehaviour {
 			Destroy (gameObject);
 		
 		Setup ();
-		
+		pauseCanvas.gameObject.SetActive(false);
 	}
+
 	void Update()
 	{
+		Pauser();
 		ScoreText.text = "Score:" + CurrentScore;
 	}
 
@@ -52,6 +57,29 @@ public class GM : MonoBehaviour {
 		Instantiate (BricksPrefab, transform.position, Quaternion.identity);
 	}
 	
+	//Pause Funtcions
+	void Pauser()
+	{
+		if(Input.GetKeyUp(KeyCode.Escape)){
+			if(m_paused == false){
+				pauseCanvas.gameObject.SetActive(true);
+				Time.timeScale = 0;
+				m_paused = true;
+			}
+		}
+	}
+	public void ReturnToMenu()
+	{
+		Application.LoadLevel("MainMenu");
+	}
+	public void Unpause(){
+		Time.timeScale = 1;
+		pauseCanvas.gameObject.SetActive(false);
+		m_paused = false;
+	}
+
+
+
 	//This tells the player whether they have won or lost.
 	void CheckGameOver()
 	{
