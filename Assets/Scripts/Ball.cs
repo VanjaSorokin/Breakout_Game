@@ -13,8 +13,6 @@ public class Ball : MonoBehaviour {
 	public Sprite Ball2;
 	public TrailRenderer trail;
 	public GameObject NewBall;
-	public int SlowPower;
-	public bool Slowing = false;
 
 	public GameObject GM;
 	public GM _gm;
