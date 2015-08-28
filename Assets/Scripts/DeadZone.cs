@@ -13,11 +13,11 @@ public class DeadZone : MonoBehaviour {
 	//it resets the paddle and ball to it's kinematic state.
 	void OnTriggerEnter (Collider col)
 	{
-		if(Balls.Length >= 2)
+		if(col.gameObject.tag == "Ball" && Balls.Length >= 2)
 		{
 			Destroy(col.gameObject);
 		}
-		if(Balls.Length == 1)
+		if(col.gameObject.tag == "Ball" && Balls.Length == 1)
 		{
 			GM.Instance.LoseLife ();
 			Destroy(col.gameObject);

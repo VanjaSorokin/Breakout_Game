@@ -9,6 +9,7 @@ public class GM : MonoBehaviour {
 	public GameObject Paddle;
 	public GameObject DeathParticles;
 	public GameObject ColourFlasher;
+	public GameObject playerParticles;
 
 	public Canvas HighScore;
 	public Canvas GameOver;
@@ -50,7 +51,7 @@ public class GM : MonoBehaviour {
 	void Update()
 	{
 		Pauser();
-		ScoreText.text = "Score:" + CurrentScore;
+		ScoreText.text = "Score: " + CurrentScore;
 		//had to put these in update, as they wouldn't change in the Win/Loss section.
 		FinalScoreText1.text = "YOUR SCORE: " + CurrentScore;
 		FinalScoreText2.text = "YOUR SCORE: " + CurrentScore;
@@ -122,8 +123,8 @@ public class GM : MonoBehaviour {
 	public void LoseLife()
 	{
 		Lives --;
-		LivesText.text = "Lives:" + Lives;
-		Instantiate (DeathParticles, ClonePaddle.transform.position, Quaternion.identity);
+		LivesText.text = "Lives: " + Lives;
+		Instantiate (playerParticles, ClonePaddle.transform.position, Quaternion.identity);
 		Destroy (ClonePaddle);
 		Invoke ("SetUpPaddle", ResetDelay);
 		CheckGameOver ();
@@ -154,6 +155,11 @@ public class GM : MonoBehaviour {
 			ColourFlasher.SetActive(true);
 			ColourFlasher.SendMessage("Destroy");
 		}
+	}
+
+	public void SubtractPoints()
+	{
+		CurrentScore -= 20;
 	}
 
 	//Resets Multiplier
