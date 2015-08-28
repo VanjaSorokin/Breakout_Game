@@ -96,6 +96,7 @@ public class GM : MonoBehaviour {
 			YouWon.gameObject.SetActive(true);
 			YouWonTrue = true;
 			Time.timeScale = .0f;
+			gameObject.SendMessage("StoreHighscore", CurrentScore);
 			//SET HIGHSCORE!
 		}
 		
@@ -103,6 +104,7 @@ public class GM : MonoBehaviour {
 		{
 			GameOver.gameObject.SetActive(true);
 			Time.timeScale = .0f;
+			gameObject.SendMessage("StoreHighscore", CurrentScore);
 			//SET HIGHSCORE!
 		}
 	}
