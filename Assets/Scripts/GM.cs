@@ -24,6 +24,7 @@ public class GM : MonoBehaviour {
 	public Text FinalScoreText2;
 	public static GM Instance = null;
 	public bool YouWonTrue = false;
+	public bool SecondBallUsed = false;
 
 
 	public int CurrentMultiplier;
