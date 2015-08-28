@@ -10,6 +10,7 @@ public class GM : MonoBehaviour {
 	public GameObject DeathParticles;
 	public GameObject ColourFlasher;
 	public GameObject playerParticles;
+	public GameObject slowMoFX;
 
 	public Canvas HighScore;
 	public Canvas GameOver;
@@ -26,7 +27,9 @@ public class GM : MonoBehaviour {
 	public bool YouWonTrue = false;
 	public bool SecondBallUsed = false;
 	public float SlowPower;
+	public float MaxSlowPower = 20;
 	public bool Slowing = false;
+	public GameObject SlowBar;
 	
 
 	public int CurrentMultiplier;
@@ -63,10 +66,16 @@ public class GM : MonoBehaviour {
 		if(Slowing == true)
 		{
 			SlowPower -= 0.2f;
+			slowMoFX.SetActive(true);
+			float calc_Slow = SlowPower / MaxSlowPower;
+			SetSlowBar (calc_Slow);
 		}
 		if(Slowing == false)
 		{
 			SlowPower += 0.05f;
+			slowMoFX.SetActive(false);
+			float calc_Slow = SlowPower / MaxSlowPower;
+			SetSlowBar (calc_Slow);
 		}
 		if(SlowPower < 0)
 		{
@@ -74,7 +83,11 @@ public class GM : MonoBehaviour {
 			Slowing = false;
 			SlowPower = 0;
 		}
-		
+		if(SlowPower > 20)
+		{
+			SlowPower = 20;
+		}
+
 		if(Input.GetButtonDown ("Slow"))
 		{
 			if(SlowPower >= 0.01f && Slowing == false)
@@ -89,6 +102,11 @@ public class GM : MonoBehaviour {
 				Time.timeScale = 1f;
 			}
 		}
+	}
+
+	public void SetSlowBar(float mySlow)
+	{
+		SlowBar.transform.localScale = new Vector3 (SlowBar.transform.localScale.x,mySlow, SlowBar.transform.localScale.z);
 	}
 
 	IEnumerator Slow()

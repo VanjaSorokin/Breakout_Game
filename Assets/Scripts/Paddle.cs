@@ -7,6 +7,9 @@ public class Paddle : MonoBehaviour {
 	AudioSource audio;
 	public float PaddleSpeed = 1f;
 
+	public GameObject flameLeft;
+	public GameObject flameRight;
+
 	private Vector3 PlayerPos = new Vector3 (0, -9.5f, 0);
 
 	void Start() {
@@ -19,6 +22,22 @@ public class Paddle : MonoBehaviour {
 		float xPos = transform.position.x + (Input.GetAxis ("Horizontal") * PaddleSpeed);
 		PlayerPos = new Vector3 (Mathf.Clamp (xPos, -8f, 8f), -9.5f, 0f);
 		transform.position = PlayerPos;
+		if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown (KeyCode.LeftArrow))
+		{
+			flameLeft.SetActive(true);
+		}
+		if(Input.GetKeyUp(KeyCode.A) || Input.GetKeyDown (KeyCode.LeftArrow))
+		{
+			flameLeft.SetActive(false);
+		}
+		if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown (KeyCode.RightArrow))
+		{
+			flameRight.SetActive(true);
+		}
+		if(Input.GetKeyUp(KeyCode.D) || Input.GetKeyDown (KeyCode.RightArrow))
+		{
+			flameRight.SetActive(false);
+		}
 	}
 
 	void OnCollisionEnter (Collision other)
