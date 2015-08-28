@@ -43,6 +43,7 @@ public class Bricks : MonoBehaviour {
 		SpriteDisplay();
 	}
 
+	//This section changes what sprite the enemies show, as they take damage they change.
 	void SpriteDisplay()
 	{
 		if(BrickHP == 4)

@@ -25,7 +25,9 @@ public class GM : MonoBehaviour {
 	public static GM Instance = null;
 	public bool YouWonTrue = false;
 	public bool SecondBallUsed = false;
-
+	public float SlowPower;
+	public bool Slowing = false;
+	
 
 	public int CurrentMultiplier;
 	
@@ -56,7 +58,50 @@ public class GM : MonoBehaviour {
 		//had to put these in update, as they wouldn't change in the Win/Loss section.
 		FinalScoreText1.text = "YOUR SCORE: " + CurrentScore;
 		FinalScoreText2.text = "YOUR SCORE: " + CurrentScore;
+
+		//this is for a slow motion ability that regenerates over time
+		if(Slowing == true)
+		{
+			SlowPower -= 0.2f;
+		}
+		if(Slowing == false)
+		{
+			SlowPower += 0.05f;
+		}
+		if(SlowPower < 0)
+		{
+			Time.timeScale = 1f;
+			Slowing = false;
+			SlowPower = 0;
+		}
+		
+		if(Input.GetButtonDown ("Slow"))
+		{
+			if(SlowPower >= 0.01f && Slowing == false)
+			{
+				Time.timeScale = 0.5f;
+				StartCoroutine(Slow());
+			}
+
+			if(Slowing == true)
+			{
+				StartCoroutine(UnSlow());
+				Time.timeScale = 1f;
+			}
+		}
 	}
+
+	IEnumerator Slow()
+	{
+		yield return new WaitForSeconds(0.05f);
+		Slowing = true;
+	}
+	IEnumerator UnSlow()
+	{
+		yield return new WaitForSeconds(0.05f);
+		Slowing = false;
+	}
+	
 
 	public void Setup()
 	{

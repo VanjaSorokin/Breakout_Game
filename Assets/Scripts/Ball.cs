@@ -13,6 +13,8 @@ public class Ball : MonoBehaviour {
 	public Sprite Ball2;
 	public TrailRenderer trail;
 	public GameObject NewBall;
+	public int SlowPower;
+	public bool Slowing = false;
 
 	public GameObject GM;
 	public GM _gm;
@@ -57,7 +59,8 @@ public class Ball : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Wait(){
+	IEnumerator Wait()
+	{
 		yield return new WaitForSeconds(0.05f);
 		sprite.GetComponent<SpriteRenderer>().sprite = Ball1;
 		trail.material.color = Color.blue;
