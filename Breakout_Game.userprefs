@@ -1,11 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Ball.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bricks.cs">
     <Files>
-      <File FileName="..\..\Work!!!\UNI\Studio2\Game 3\Repo\Assets\Scripts\GameController.cs" Line="339" Column="44" />
-      <File FileName="Assets\Scripts\GM.cs" Line="77" Column="31" />
-      <File FileName="Assets\Scripts\Bricks.cs" Line="63" Column="4" />
-      <File FileName="Assets\Scripts\Ball.cs" Line="43" Column="3" />
+      <File FileName="Assets\Scripts\Ball.cs" Line="15" Column="3" />
+      <File FileName="..\..\Work!!!\UNI\Studio2\Game 3\Repo\Assets\Scripts\GameController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GM.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Bricks.cs" Line="44" Column="39" />
+      <File FileName="Assets\Scripts\CameraShake.cs" Line="45" Column="2" />
+      <File FileName="Assets\Scripts\Walls.cs" Line="13" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -5,21 +5,25 @@ using UnityEngine.UI;
 public class GM : MonoBehaviour {
 
 	//These are all the game objects.
-	public GameObject GameOver;
-	public GameObject YouWon;
 	public GameObject BricksPrefab;
 	public GameObject Paddle;
 	public GameObject DeathParticles;
-	public GameObject Score;
+	public GameObject ColourFlasher;
 
+	public Canvas HighScore;
+	public Canvas GameOver;
+	public Canvas YouWon;
 	public int CurrentScore;
 	public int Lives = 3;
 	public int Bricks = 20;
 	public float ResetDelay = 1f;
 	public Text LivesText;
 	public Text ScoreText;
+	public Text FinalScoreText1;
+	public Text FinalScoreText2;
 	public static GM Instance = null;
 	public bool YouWonTrue = false;
+
 
 	public int CurrentMultiplier;
 	
@@ -47,6 +51,9 @@ public class GM : MonoBehaviour {
 	{
 		Pauser();
 		ScoreText.text = "Score:" + CurrentScore;
+		//had to put these in update, as they wouldn't change in the Win/Loss section.
+		FinalScoreText1.text = "YOUR SCORE: " + CurrentScore;
+		FinalScoreText2.text = "YOUR SCORE: " + CurrentScore;
 	}
 
 	public void Setup()
@@ -85,17 +92,18 @@ public class GM : MonoBehaviour {
 	{
 		if (Bricks < 1) 
 		{
-			YouWon.SetActive (true);
+			CurrentScore += 1000; //Bonus points for WINNING!
+			YouWon.gameObject.SetActive(true);
 			YouWonTrue = true;
-			Time.timeScale = .25f;
-			Invoke ("Reset", ResetDelay);
+			Time.timeScale = .0f;
+			//SET HIGHSCORE!
 		}
 		
 		if (Lives < 1 && YouWonTrue == false) 
 		{
-			GameOver.SetActive (true);
-			Time.timeScale = .25f;
-			Invoke ("Reset", ResetDelay);
+			GameOver.gameObject.SetActive(true);
+			Time.timeScale = .0f;
+			//SET HIGHSCORE!
 		}
 	}
 	
@@ -136,6 +144,12 @@ public class GM : MonoBehaviour {
 		CurrentMultiplier += 1;
 		points = (points*CurrentMultiplier);
 		CurrentScore = (CurrentScore + points);
+
+		if(CurrentMultiplier >= 3)
+		{
+			ColourFlasher.SetActive(true);
+			ColourFlasher.SendMessage("Destroy");
+		}
 	}
 
 	//Resets Multiplier
