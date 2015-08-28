@@ -94,6 +94,7 @@ public class GM : MonoBehaviour {
 		{
 			CurrentScore += 1000; //Bonus points for WINNING!
 			YouWon.gameObject.SetActive(true);
+			HighScore.gameObject.SetActive(true);
 			YouWonTrue = true;
 			Time.timeScale = .0f;
 			gameObject.SendMessage("StoreHighscore", CurrentScore);
@@ -103,6 +104,7 @@ public class GM : MonoBehaviour {
 		if (Lives < 1 && YouWonTrue == false) 
 		{
 			GameOver.gameObject.SetActive(true);
+			HighScore.gameObject.SetActive(true);
 			Time.timeScale = .0f;
 			gameObject.SendMessage("StoreHighscore", CurrentScore);
 			//SET HIGHSCORE!
